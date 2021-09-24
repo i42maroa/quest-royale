@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-map',
+  selector: 'quest-game-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })

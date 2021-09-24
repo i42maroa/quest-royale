@@ -4,7 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import {QuestGameModule} from './quest-game/quest-game.module'
+import {QuestGameModule} from './quest-game/quest-game.module';
+import { TeamModule } from './team/team.module';
+import { PupilModule } from './pupil/pupil.module';
+
 
 
 @NgModule({
@@ -14,7 +17,9 @@ import {QuestGameModule} from './quest-game/quest-game.module'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    QuestGameModule
+    QuestGameModule,
+    PupilModule,
+    TeamModule
   ],
   providers: [],
   bootstrap: [AppComponent]

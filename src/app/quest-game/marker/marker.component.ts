@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-marker',
+  selector: 'quest-game-marker',
   templateUrl: './marker.component.html',
   styleUrls: ['./marker.component.scss']
 })
