@@ -1,0 +1,22 @@
+.box{
+    width: 5vh;
+    height: 5vh;
+   
+    margin: 1vh;
+}
+
+.isInside{
+    background: #0f0;
+}
+
+.isNotInside{
+    background: #f00;
+}
+
+.initialBox{
+    outline: orange 2px solid;
+}
+
+.finishedBox{
+    outline: springgreen 2px solid;
+}

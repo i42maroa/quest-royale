@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TeamComponent } from '../quest-game/team/team.component';
+import { TeamComponent } from './team.component';
 
 
 

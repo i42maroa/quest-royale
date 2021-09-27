@@ -9,7 +9,9 @@ import { MarkerComponent } from './marker/marker.component';
 import { QuestGameRoutingModule } from './quest-game-routing.module';
 import { QuestComponent } from './quest-box/quest/quest.component';
 import { GeneratedGameComponent } from './generated-game/generated-game.component';
-import { TeamComponent } from './team/team.component';
+import { BoxComponent } from './map/box/box.component';
+import { RoadComponent } from './map/road/road.component';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { TeamComponent } from './team/team.component';
     MarkerComponent,
     QuestComponent,
     GeneratedGameComponent,
-    TeamComponent
+    BoxComponent,
+    RoadComponent
   ],
   imports: [
     CommonModule,

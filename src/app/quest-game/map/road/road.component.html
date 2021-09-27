@@ -1,0 +1,7 @@
+<div class="road-box">
+    <div *ngFor="let box of listBox">    
+        <map-box [box]="box"></map-box>
+    </div>
+</div>
+
+<button (click) =  "advanceBox(1)">Subir1</button>
