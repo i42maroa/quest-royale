@@ -1,5 +1,17 @@
-<p>quest box works!</p>
-<quest-game-quest></quest-game-quest>
-<quest-game-quest></quest-game-quest>
-<quest-game-quest></quest-game-quest>
-<quest-game-quest></quest-game-quest>
+
+<div class="card-quest">
+    <div class="quest-title">
+        <p>{{quest.titleQuest}}</p>
+    </div>
+
+    <div class="quest-body">
+        <div *ngFor="let option of quest.listOptions" (click)="selectOption(0, option)" (contextmenu)="selectOption(1,option)"  >
+            <option-quest-game-quest [optionQuest]="option" [showResults]="showResults" ></option-quest-game-quest>
+        </div>
+
+
+        
+    </div>
+    <button (click)="checkResult()"> Comprobar</button>
+</div>
+

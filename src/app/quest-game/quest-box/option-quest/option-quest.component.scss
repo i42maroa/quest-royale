@@ -1,0 +1,30 @@
+.quest{
+    color: #fff;
+    width: 50%;
+    text-align: center;
+    margin: 1vh auto;
+    padding: 1vh 2vh;
+    border-radius: 5px;
+    justify-self: center;
+    cursor: pointer;
+}
+
+
+.optionSelectedFirstTeam{
+    border: yellow solid 5px;
+}
+.optionSelectedSecondTeam{
+    outline: #00f solid 5px;
+}
+
+.optionCorrect{
+    background: chartreuse;
+}
+
+.optionIncorrect{
+    background: #f00;
+}
+
+.notShowResults{
+     background: #333 ;
+}

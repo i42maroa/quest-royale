@@ -1,0 +1,14 @@
+.quest-title{
+    text-align: center;
+    background: #eee;
+    border-radius: 5px;
+    width: 80%;
+    padding: 1vh 2vh;
+    margin: 2vh auto;
+}
+
+.quest-body{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    margin: auto;
+}

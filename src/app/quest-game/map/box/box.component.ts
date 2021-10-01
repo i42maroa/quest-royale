@@ -8,9 +8,8 @@ import { Box, ColorBox, TypeBox } from './boxTDO.interface';
 })
 export class BoxComponent implements OnInit {
 
-  color:ColorBox;
-
   @Input() box:Box;
+  color:ColorBox;
 
   isInitialBox:boolean;
   isFinalBox:boolean;

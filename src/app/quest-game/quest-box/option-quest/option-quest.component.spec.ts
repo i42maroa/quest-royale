@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { QuestComponent } from './quest.component';
+import { OptionQuestComponent } from './option-quest.component';
 
 describe('QuestComponent', () => {
-  let component: QuestComponent;
-  let fixture: ComponentFixture<QuestComponent>;
+  let component: OptionQuestComponent;
+  let fixture: ComponentFixture<OptionQuestComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ QuestComponent ]
+      declarations: [ OptionQuestComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(QuestComponent);
+    fixture = TestBed.createComponent(OptionQuestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

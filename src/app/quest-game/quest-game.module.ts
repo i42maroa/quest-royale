@@ -7,7 +7,7 @@ import { QuestBoxComponent } from './quest-box/quest-box.component';
 import { PlayersComponent } from './players/players.component';
 import { MarkerComponent } from './marker/marker.component';
 import { QuestGameRoutingModule } from './quest-game-routing.module';
-import { QuestComponent } from './quest-box/quest/quest.component';
+import { OptionQuestComponent } from './quest-box/option-quest/option-quest.component';
 import { GeneratedGameComponent } from './generated-game/generated-game.component';
 import { BoxComponent } from './map/box/box.component';
 import { RoadComponent } from './map/road/road.component';
@@ -20,7 +20,7 @@ import { RoadComponent } from './map/road/road.component';
     QuestBoxComponent,
     PlayersComponent,
     MarkerComponent,
-    QuestComponent,
+    OptionQuestComponent,
     GeneratedGameComponent,
     BoxComponent,
     RoadComponent
