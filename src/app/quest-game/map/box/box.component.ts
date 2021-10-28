@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, Type } from '@angular/core';
-import { Box, ColorBox, TypeBox } from './boxTDO.interface';
 
 @Component({
   selector: 'map-box',
@@ -8,28 +7,12 @@ import { Box, ColorBox, TypeBox } from './boxTDO.interface';
 })
 export class BoxComponent implements OnInit {
 
-  @Input() box:Box;
-  color:ColorBox;
-
-  isInitialBox:boolean;
-  isFinalBox:boolean;
+  @Input() isInside:boolean;
 
   constructor() { 
-    this.color = ColorBox.COLOR_BOX_GREEN;
-    this.box = {
-      isInside:false,
-      typeBox:TypeBox.NORMAL_BOX
-    }
-    this.isInitialBox = false;
-    this.isFinalBox = false;
+    this.isInside=false;
   }
 
   ngOnInit(): void {
-    if(this.box.typeBox == TypeBox.INITIAL_BOX){
-      this.isInitialBox=true;
-    } else if ( this.box.typeBox == TypeBox.FINISHED_BOX){
-      this.isFinalBox=true;
-    }
   }
-
 }

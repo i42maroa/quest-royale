@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { OptionQuest, Quest } from './questDTO.interface';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { LIST_QUESTS_GAME } from './quests';
+import { Quest } from './questDTO.interface';
+
+import { GAME_SETTINGS } from '../service/game-settings';
 
 @Component({
   selector: 'quest-game-quest-box',
@@ -8,95 +11,45 @@ import { OptionQuest, Quest } from './questDTO.interface';
 })
 export class QuestBoxComponent implements OnInit {
 
-  quest:Quest;
-  isOptionSelectedFirst:boolean;
-  isOptionSelectedSecond:boolean;
-  optionSelectedFirst: OptionQuest;
-  optionSelectedSecond: OptionQuest;
+  @Output() responseQuestEvent = new EventEmitter<boolean>();
+
   showResults:boolean;
+  quest:Quest;
+  optionChoosed:number;
 
   constructor() { 
-    this.quest = {
-      titleQuest:"",
-      listOptions:[]
-    };
-    this.optionSelectedFirst = {
-      titleOption:"",
-      isCorrect:false,
-      isSelectByFirstTeam:false,
-      isSelectBySecondTeam:false
-    }
-    this.optionSelectedSecond = {
-      titleOption:"",
-      isCorrect:false,
-      isSelectByFirstTeam:false,
-      isSelectBySecondTeam:false
-    }
-    this.isOptionSelectedFirst=false;
-    this.isOptionSelectedSecond=false;
     this.showResults = false;
+    this.quest = LIST_QUESTS_GAME[0];
+    this.optionChoosed = -1;
   }
-
 
 
   ngOnInit(): void {
-    this.quest = this.generateQuest();
-    
+    this.quest = LIST_QUESTS_GAME[0];
+    this.startQuestion();
   }
 
-
-  generateQuest():Quest{
-    return  {
-      titleQuest:"Cuanto es 1 + 1",
-      listOptions: [{
-        titleOption:"2",
-        isCorrect:false,
-        isSelectByFirstTeam:false,
-        isSelectBySecondTeam:false
-      },{
-        titleOption:"7",
-        isCorrect:true,
-        isSelectByFirstTeam:false,
-        isSelectBySecondTeam:false
-      },{
-        titleOption:"4",
-        isCorrect:false,
-        isSelectByFirstTeam:false,
-        isSelectBySecondTeam:false
-      },{
-        titleOption:"1",
-        isCorrect:false,
-        isSelectByFirstTeam:false,
-        isSelectBySecondTeam:false
-      }]
-    }
+  startQuestion(){
+    this.showResults=false;
+    this.optionChoosed = -1;
   }
 
-  selectOption(team:number, option:OptionQuest){
-    if(!this.showResults){ 
-      switch(team){
-        case 0:
-          if(this.isOptionSelectedFirst){
-            this.optionSelectedFirst.isSelectByFirstTeam = false;
-          }
-          option.isSelectByFirstTeam = true;
-          this.optionSelectedFirst = option;
-          this.isOptionSelectedFirst = true;
-          break
-        case 1:
-          if(this.isOptionSelectedSecond){
-            this.optionSelectedSecond.isSelectBySecondTeam = false;
-          }
-          option.isSelectBySecondTeam = true;
-          this.optionSelectedSecond = option;
-          this.isOptionSelectedSecond = true;
-          break;
-        default:
-      }
+  chooseOption(option:number){
+    if(option < GAME_SETTINGS.amountOptionsQuestion && option >= 0){
+      this.optionChoosed = option;
     }
   }
 
   checkResult(){
     this.showResults=true;
+
+    if(this.optionChoosed == -1){
+      this.responseQuestEvent.emit(false);
+    }else if(this.quest.listOptions[this.optionChoosed]){
+      this.responseQuestEvent.emit(true);
+    }else{
+      this.responseQuestEvent.emit(false);
+    }
   }
+
 }

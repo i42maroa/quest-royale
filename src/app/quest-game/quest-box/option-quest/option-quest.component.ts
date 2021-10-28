@@ -15,16 +15,16 @@ enum TeamChosing{
 export class OptionQuestComponent implements OnInit {
 
   @Input() optionQuest:OptionQuest;
+  @Input() isSelect:boolean;
   @Input() showResults:boolean;
 
   constructor() {
     this.optionQuest = {
       titleOption:"",
       isCorrect:false,
-      isSelectByFirstTeam:false,
-      isSelectBySecondTeam:false
     }
     this.showResults=false;
+    this.isSelect=false;
    }
 
   ngOnInit(): void {

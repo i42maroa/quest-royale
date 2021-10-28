@@ -1,1 +1,12 @@
-<p>marker works!</p>
+
+<div class="marker">
+    <div *ngFor="let team of marker" class="team_marker">    
+        <div class="text_marker">
+            {{team.markerTeam.nameTeam}}
+        </div>
+    
+        <div class="number_marker">
+            {{team.resultTeam}}
+        </div>
+    </div>
+</div>

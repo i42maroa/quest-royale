@@ -3,13 +3,12 @@
     <div class="quest-title">
         <p>{{quest.titleQuest}}</p>
     </div>
+    {{optionChoosed}}
 
     <div class="quest-body">
-        <div *ngFor="let option of quest.listOptions" (click)="selectOption(0, option)" (contextmenu)="selectOption(1,option)"  >
-            <option-quest-game-quest [optionQuest]="option" [showResults]="showResults" ></option-quest-game-quest>
+        <div *ngFor="let option of quest.listOptions; index as i" (click)="chooseOption(i)">
+            <option-quest-game-quest [optionQuest]="option" [showResults]="showResults" [isSelect]="false"></option-quest-game-quest>
         </div>
-
-
         
     </div>
     <button (click)="checkResult()"> Comprobar</button>

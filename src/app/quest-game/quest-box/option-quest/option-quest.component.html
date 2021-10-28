@@ -1,7 +1,7 @@
 
 <div class="quest" 
-[ngClass]="{'optionSelectedFirstTeam': optionQuest.isSelectByFirstTeam, 'optionSelectedSecondTeam': optionQuest.isSelectBySecondTeam, 
-'optionCorrect': optionQuest.isCorrect, 'optionIncorrect': !optionQuest.isCorrect, 'notShowResults': !showResults}">
+[ngClass]="{'isSelectOption': isSelect,  'optionCorrect': optionQuest.isCorrect, 
+'optionIncorrect': !optionQuest.isCorrect, 'notShowResults': !showResults}">
         {{optionQuest.titleOption}}  
 </div>
 

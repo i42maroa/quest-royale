@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Team } from 'src/app/team/teamDTO.interface';
+import { TeamMarker } from './markerDTO.interface';
 
 @Component({
   selector: 'quest-game-marker',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MarkerComponent implements OnInit {
 
-  constructor() { }
+  @Input() marker:TeamMarker[];
+
+  constructor() { 
+    this.marker=[];
+  }
 
   ngOnInit(): void {
   }

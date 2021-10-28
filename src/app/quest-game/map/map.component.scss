@@ -1,3 +1,10 @@
+.container-marker{
+    width: 80%;
+    margin: 2vh auto;
+    padding: 2vh 5vh;
+    background: #594;
+}
+
 .container-map{
     width: 90%;
     margin: 15vh auto;
@@ -5,12 +12,14 @@
     background: #0f0;
 }
 
-.container-quests{
+.container-map{
     width: 90%;
     margin: 15vh auto;
     padding: 10vh 5vh;
-    background: #aaf;
+    background: #0f0;
 }
+
+
 
 .map-circuit{
     margin: auto; 
