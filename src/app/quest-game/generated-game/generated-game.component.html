@@ -1,1 +1,54 @@
-<p>generated-game works!</p>
+<div>
+    <h2>CREATE NEW GAME</h2>
+
+    <div>
+        <label><input type="checkbox" id="cboxEasy" [(ngModel)]="gameSettings.easyQuestions">Easy quests</label>
+        <label><input type="checkbox" id="cboxMedium" [(ngModel)]="gameSettings.mediumQuestions">Medium quests</label>
+        <label><input type="checkbox" id="cboxDifficult" [(ngModel)]="gameSettings.dificultQuestions">Difficult quests</label>
+        <label><input type="checkbox" id="cboxSpecial" [(ngModel)]="gameSettings.specialQuestions">Special quests</label>
+    </div>
+
+   <div>
+       <select name="miselect" [(ngModel)]="typeRoundSelected">
+        <option [value]="item" *ngFor="let item of roundSelectOptions">{{item}}</option>
+        </select>
+   </div>
+   <div>
+    <select name="miselect" [(ngModel)]="gameSettings.gameMode">
+     <option [value]="type" *ngFor="let type of gameModeOptions">{{type}}</option>
+     </select>
+</div>
+
+    <div>
+        <button (click)="createTeam()">Add team</button>
+        <div *ngFor="let team of gameSettings.teamsGame;index as i">
+            {{team.nameTeam}} <button (click)="deleteTeam(i)">X</button>
+        </div>
+        <div *ngIf="showAddTeam">
+            <input type="text" id="name" [(ngModel)]="newNameTeam"  required minlength="4">
+            <button (click)="addTeam(newNameTeam)">Add</button>
+        </div>
+    </div>
+
+    <button (click)="toggleShowConfirmModal()" [disabled]="disabledCreateBotom()">Create game</button> 
+
+    <div *ngIf="showConfirmModal">
+        <div class="confirmModal">
+            <p>NEW GAME</p>
+            <p>cboxEasy: {{gameSettings.easyQuestions}}</p>
+            <p>cboxMedium: {{gameSettings.mediumQuestions}}</p>
+            <p>cboxDifficult: {{gameSettings.dificultQuestions}}</p>
+            <p>cboxSpecial:{{gameSettings.specialQuestions}} </p>
+            <p>type round: {{typeRoundSelected}}</p>     
+
+            <p>Teams to played:</p>
+            <div *ngFor="let team of gameSettings.teamsGame">
+                {{team.nameTeam}}
+            </div>
+            
+            <button (click)="confirmGame()">Confirm game</button>
+            <button (click)="toggleShowConfirmModal()">BACK</button>
+        </div>
+        <div class="modal_blur"></div>
+    </div>    
+</div>

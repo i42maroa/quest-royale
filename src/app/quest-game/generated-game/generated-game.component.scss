@@ -1,0 +1,22 @@
+.modal_blur{
+    position: absolute;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    width: 100vw;
+    height: 100vh;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.confirmModal{
+    position: absolute;
+    background-color: violet;
+    z-index: 200;
+    width: 80vw;
+    margin: auto;
+    top: 10vh;
+    left: 0;
+    right: 0;
+}

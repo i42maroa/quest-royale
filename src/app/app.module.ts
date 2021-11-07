@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import {QuestGameModule} from './quest-game/quest-game.module';
 import { TeamModule } from './team/team.module';
 import { PupilModule } from './pupil/pupil.module';
+import { FormsModule } from '@angular/forms';
+
 
 
 
@@ -16,6 +18,7 @@ import { PupilModule } from './pupil/pupil.module';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     QuestGameModule,
     PupilModule,

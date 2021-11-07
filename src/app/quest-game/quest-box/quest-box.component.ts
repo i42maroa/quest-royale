@@ -1,8 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { LIST_QUESTS_GAME } from './quests';
 import { Quest } from './questDTO.interface';
 
-import { GAME_SETTINGS } from '../service/game-settings';
+import { GAME_SETTINGS } from '../services/game-settings';
 
 @Component({
   selector: 'quest-game-quest-box',
@@ -11,21 +11,26 @@ import { GAME_SETTINGS } from '../service/game-settings';
 })
 export class QuestBoxComponent implements OnInit {
 
-  @Output() responseQuestEvent = new EventEmitter<boolean>();
-
+  @Output() responseQuestEvent = new EventEmitter<number>();
+  @Output() showMapEvent = new EventEmitter<boolean>();
+  @Input() teamCurrent:string;
+  
   showResults:boolean;
   quest:Quest;
   optionChoosed:number;
+  questListNumber:number;
 
   constructor() { 
+    this.teamCurrent = "";
     this.showResults = false;
     this.quest = LIST_QUESTS_GAME[0];
     this.optionChoosed = -1;
+    this.questListNumber = 0;
   }
 
 
   ngOnInit(): void {
-    this.quest = LIST_QUESTS_GAME[0];
+    this.quest = LIST_QUESTS_GAME[this.questListNumber];
     this.startQuestion();
   }
 
@@ -42,14 +47,22 @@ export class QuestBoxComponent implements OnInit {
 
   checkResult(){
     this.showResults=true;
-
-    if(this.optionChoosed == -1){
-      this.responseQuestEvent.emit(false);
-    }else if(this.quest.listOptions[this.optionChoosed]){
-      this.responseQuestEvent.emit(true);
-    }else{
-      this.responseQuestEvent.emit(false);
-    }
   }
 
+  resetQuestion(){
+    this.showResults=false;
+    this.optionChoosed = -1;
+    this.questListNumber = (this.questListNumber + 1) % LIST_QUESTS_GAME.length;
+    this.quest = LIST_QUESTS_GAME[this.questListNumber];
+  }
+
+  sendResults(){
+    if(this.optionChoosed == -1){
+      this.responseQuestEvent.emit(0);
+    }else if(this.quest.listOptions[this.optionChoosed].isCorrect){
+      this.responseQuestEvent.emit(2);
+    }else{
+      this.responseQuestEvent.emit(0);
+    }
+  }
 }

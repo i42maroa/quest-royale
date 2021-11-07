@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Box, ColorBox } from '../box/boxTDO.interface';
 
-import { GAME_SETTINGS } from '../../service/game-settings';
+import { GAME_SETTINGS } from '../../services/game-settings';
 
 @Component({
   selector: 'map-road',

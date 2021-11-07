@@ -12,3 +12,19 @@
     grid-template-columns: repeat(2,1fr);
     margin: auto;
 }
+
+.card_quest{
+    z-index: 200;
+}
+
+.buttons_container{
+    display: flex;
+    margin: auto;
+    width: 100%;
+}
+
+.buttons_container div{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}

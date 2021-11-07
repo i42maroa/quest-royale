@@ -1,16 +1,6 @@
-<div class="container-marker">
-    <quest-game-marker [marker]="marker"></quest-game-marker>
-</div>
 
 <div class="container-map" >
     <div *ngFor="let team of roadTeams" class="map-circuit">
         <map-road [currentPosition]="team.currentPosition"></map-road>
     </div>
 </div>
-
-{{gameTeams[activeTeamToQuest].nameTeam}}
-
-<div *ngIf="showQuestion">
-    <quest-game-quest-box  (responseQuestEvent)="questionResponse($event)" ></quest-game-quest-box>
-</div>
-

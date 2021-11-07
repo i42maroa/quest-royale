@@ -6,8 +6,13 @@ import { GameSettings } from './gameSettings.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class ConfigurationServiceService {
+export class ConfigurationService {
 
   constructor() { }
+
+
+  generateGame(){
+    
+  }
 
 }

@@ -1,16 +1,27 @@
 
-<div class="card-quest">
+<div class="card_quest">
+
     <div class="quest-title">
         <p>{{quest.titleQuest}}</p>
     </div>
-    {{optionChoosed}}
-
     <div class="quest-body">
         <div *ngFor="let option of quest.listOptions; index as i" (click)="chooseOption(i)">
-            <option-quest-game-quest [optionQuest]="option" [showResults]="showResults" [isSelect]="false"></option-quest-game-quest>
-        </div>
-        
+            <option-quest-game-quest [optionQuest]="option" [showResults]="showResults" 
+            [isSelect]="(optionChoosed == i)?true:false"></option-quest-game-quest>
+        </div>     
     </div>
-    <button (click)="checkResult()"> Comprobar</button>
+
+    <div class="buttons_container">
+        <div *ngIf="!showResults">
+            <button (click)="checkResult()" [disabled]="optionChoosed == -1"> Comprobar</button>
+        </div>
+        <div *ngIf="showResults">
+            <button (click)="sendResults()">NextTeam</button>
+        </div>
+    </div>
+
+    <div>
+        <p>Current team: {{teamCurrent}}</p>
+    </div>
 </div>
 
