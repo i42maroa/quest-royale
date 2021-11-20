@@ -1,3 +1,4 @@
 export interface Team {
-    nameTeam:string
+    nameTeam:string;
+    id?:number
 }

@@ -1,7 +1,5 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Box, ColorBox } from '../box/boxTDO.interface';
-
-import { GAME_SETTINGS } from '../../services/game-settings';
 
 @Component({
   selector: 'map-road',
@@ -11,11 +9,13 @@ import { GAME_SETTINGS } from '../../services/game-settings';
 export class RoadComponent implements OnInit {
 
   @Input() currentPosition:number;
+  @Input() amountBoxRoad:number;
   listBox:Box[];
   
   constructor() {
     this.listBox = [];
     this.currentPosition = 0;
+    this.amountBoxRoad = 0;
    }
 
   ngOnInit(): void {
@@ -23,7 +23,7 @@ export class RoadComponent implements OnInit {
   }
 
   generateRoad(){
-    for(let i=0; i<GAME_SETTINGS.amountBoxRoad;i++){
+    for(let i=0; i<this.amountBoxRoad;i++){
         this.listBox.push({});
     }  
   }

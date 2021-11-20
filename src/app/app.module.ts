@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 
 import {QuestGameModule} from './quest-game/quest-game.module';
 import { TeamModule } from './team/team.module';
-import { PupilModule } from './pupil/pupil.module';
 import { FormsModule } from '@angular/forms';
 
+import {HttpClientModule} from '@angular/common/http'
+import { TeamService } from './team/team.service';
 
 
 
@@ -21,10 +22,12 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     AppRoutingModule,
     QuestGameModule,
-    PupilModule,
-    TeamModule
+    TeamModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    TeamService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

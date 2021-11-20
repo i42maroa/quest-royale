@@ -1,25 +1,26 @@
-
-<div class="container-marker">
-    <quest-game-marker [marker]="marker"></quest-game-marker>
-</div>
-
-<quest-game-map (winTeamEvent)="winTeam($event)" [teamsToPlay]="gameTeams"></quest-game-map>
-
-<div class="container_buttons" *ngIf="!showQuestion">
-    <div *ngIf="!isStartGame">
-        <button (click)="startGame()">Start game</button>
-    </div>
-    <div class="container_button_next" *ngIf="isStartGame">  
-        <p>Time for {{gameTeams[activeTeamToQuest].nameTeam}}</p>
-        <button (click)="toggleShowQuest()">GO</button>
-    </div>
-</div>
-
-<div class="container_questions" *ngIf="showQuestion">
-    <div class="card_questions">
-        <quest-game-quest-box [teamCurrent]="gameTeams[activeTeamToQuest].nameTeam" (responseQuestEvent)="questionResponse($event)"
-        ></quest-game-quest-box>
+<div class="container_match" >
+    <div class="container_questions" *ngIf="showQuestion">
+        <quest-game-quest-box [teamCurrent]="matchTeams[activeTeamToQuest].nameTeam" [matchSettings]="matchSettings" (responseQuestEvent)="questionResponse($event)"></quest-game-quest-box> 
     </div> 
-    <div class="modal_blur"></div>
+    
+    <div [ngClass]="{'container_map': !showQuestion, 'container_map_questions': showQuestion}">
+        <div class="container-marker">
+            <quest-game-marker ></quest-game-marker>
+        </div>
+        <quest-game-map (winTeamEvent)="winTeam($event)" [amountBoxRoad]="matchSettings.amountBoxRoad" [teamsToPlay]="matchTeams"></quest-game-map>   
+    </div>    
+ 
+    <div class="container_buttons" *ngIf="!showQuestion">
+        <div *ngIf="!isStartGame">
+            <button (click)="startGame()">Start match</button>
+        </div>
+        <div class="container_button_next" *ngIf="isStartGame">  
+            <p>Time for {{matchTeams[activeTeamToQuest].nameTeam}}</p>
+            <button (click)="toggleShowQuest()">GO</button>
+        </div>
+    </div>  
+    <!-- <div class="modal_blur" *ngIf="showQuestion"></div> -->  
 </div>
+
+
 

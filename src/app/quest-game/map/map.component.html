@@ -1,6 +1,6 @@
 
 <div class="container-map" >
     <div *ngFor="let team of roadTeams" class="map-circuit">
-        <map-road [currentPosition]="team.currentPosition"></map-road>
+        <map-road [amountBoxRoad]="amountBoxRoad" [currentPosition]="team.currentPosition"></map-road>
     </div>
 </div>

@@ -1,8 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { LIST_QUESTS_GAME } from './quests';
-import { Quest } from './questDTO.interface';
-
-import { GAME_SETTINGS } from '../services/game-settings';
+import { DEFAULT_QUEST, Difficulty, Quest, Unit } from './questDTO.interface';
+import { QuestService } from './quest.service';
+import { DEFAULT_GAME_SETTINGS, GameSettings } from '../services/gameSettings.interface';
 
 @Component({
   selector: 'quest-game-quest-box',
@@ -11,58 +10,87 @@ import { GAME_SETTINGS } from '../services/game-settings';
 })
 export class QuestBoxComponent implements OnInit {
 
+  @Input() matchSettings:GameSettings
   @Output() responseQuestEvent = new EventEmitter<number>();
   @Output() showMapEvent = new EventEmitter<boolean>();
   @Input() teamCurrent:string;
   
   showResults:boolean;
   quest:Quest;
+  currentQuest:number;
   optionChoosed:number;
-  questListNumber:number;
+  
+  questList:Quest[];
 
-  constructor() { 
+  constructor(private _questService:QuestService) { 
     this.teamCurrent = "";
     this.showResults = false;
-    this.quest = LIST_QUESTS_GAME[0];
+    this.matchSettings = DEFAULT_GAME_SETTINGS;
+    this.quest = DEFAULT_QUEST;
     this.optionChoosed = -1;
-    this.questListNumber = 0;
+    this.currentQuest = 0;
+    this.questList=[];
   }
 
-
   ngOnInit(): void {
-    this.quest = LIST_QUESTS_GAME[this.questListNumber];
-    this.startQuestion();
+    this._questService.getQuestList().subscribe(
+      questList =>{
+        console.log(questList);
+        for(let units of questList){
+          for(let quest of units.questsList){         
+            //Introducimos al listado de preguntas aquellas que tengan la dificultad seleccionada
+            if(this.matchSettings.easyQuestions && quest.difficulty == Difficulty.EASY){
+              this.questList.push(quest);
+            }
+            if(this.matchSettings.mediumQuestions && quest.difficulty == Difficulty.MEDIUM){
+              this.questList.push(quest);
+            }
+            if(this.matchSettings.dificultQuestions && quest.difficulty == Difficulty.HARD){
+              this.questList.push(quest);
+            }         
+          }
+        }
+        console.log("start")
+        this.startQuestion();
+      }
+    );
   }
 
   startQuestion(){
-    this.showResults=false;
-    this.optionChoosed = -1;
+    this.resetQuest();
+    this.quest = this.questList[this.currentQuest];
   }
 
   chooseOption(option:number){
-    if(option < GAME_SETTINGS.amountOptionsQuestion && option >= 0){
+    if(option < this.quest.listOptions.length && option >= 0 && this.showResults == false){
       this.optionChoosed = option;
     }
   }
 
   checkResult(){
-    this.showResults=true;
+    this.showResults=true;  
   }
 
-  resetQuestion(){
+  nextQuest(){
+    this.currentQuest = (this.currentQuest + 1) % this.questList.length;
+    this.quest = this.questList[this.currentQuest];
+    this.resetQuest();
+  }
+
+  resetQuest(){
     this.showResults=false;
     this.optionChoosed = -1;
-    this.questListNumber = (this.questListNumber + 1) % LIST_QUESTS_GAME.length;
-    this.quest = LIST_QUESTS_GAME[this.questListNumber];
   }
+
 
   sendResults(){
     if(this.optionChoosed == -1){
       this.responseQuestEvent.emit(0);
     }else if(this.quest.listOptions[this.optionChoosed].isCorrect){
-      this.responseQuestEvent.emit(2);
+      this.responseQuestEvent.emit(this._questService.getPointOfDifficulty(this.quest.difficulty));
     }else{
       this.responseQuestEvent.emit(0);
     }
+    this.nextQuest();
   }
 }

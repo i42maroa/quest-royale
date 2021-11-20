@@ -4,9 +4,6 @@ import { TeamMarker } from '../marker/markerDTO.interface';
 import { TeamRoad } from './road/teamRoad.interface';
 import { MapService } from './map.service';
 
-import { GAME_SETTINGS } from '../services/game-settings';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-
 @Component({
   selector: 'quest-game-map',
   templateUrl: './map.component.html',
@@ -15,6 +12,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 export class MapComponent implements OnInit {  
   
   @Input() teamsToPlay:Team[];
+  @Input() amountBoxRoad:number;
   @Output() winTeamEvent = new EventEmitter<number>();
   roadTeams:TeamRoad[];
   
@@ -22,6 +20,7 @@ export class MapComponent implements OnInit {
   constructor(private _mapService:MapService) {
     this.teamsToPlay=[];
     this.roadTeams=[];
+    this.amountBoxRoad=0;
    }
 
   ngOnInit(): void {

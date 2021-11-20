@@ -16,7 +16,6 @@ import { MatchComponent } from './match/match.component';
 import { MapService } from './map/map.service';
 import { QuestService } from './quest-box/quest.service';
 import { GameComponent } from './game/game.component';
-import { GeneratedGameService } from './generated-game/generated-game.service';
 import { MarkerService } from './marker/marker.service';
 import { MatchService } from './match/match.service';
 import { GameService } from './game/game.service';
@@ -45,7 +44,6 @@ import { GameService } from './game/game.service';
   providers:[
     MapService,
     QuestService,
-    GeneratedGameService,
     MarkerService,
     MatchService,
     GameService

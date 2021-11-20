@@ -1,11 +1,15 @@
 <div>
     <h2>CREATE NEW GAME</h2>
 
+    <!-- <div>
+        <label><input type="checkbox" id="cboxUnit1" [(ngModel)]="gameSettings.unit1">Unit 1</label>
+        <label><input type="checkbox" id="cboxUnit2" [(ngModel)]="gameSettings.unit2">Unit 2</label>
+    </div> 
+    <br>-->
     <div>
         <label><input type="checkbox" id="cboxEasy" [(ngModel)]="gameSettings.easyQuestions">Easy quests</label>
         <label><input type="checkbox" id="cboxMedium" [(ngModel)]="gameSettings.mediumQuestions">Medium quests</label>
         <label><input type="checkbox" id="cboxDifficult" [(ngModel)]="gameSettings.dificultQuestions">Difficult quests</label>
-        <label><input type="checkbox" id="cboxSpecial" [(ngModel)]="gameSettings.specialQuestions">Special quests</label>
     </div>
 
    <div>
@@ -13,15 +17,22 @@
         <option [value]="item" *ngFor="let item of roundSelectOptions">{{item}}</option>
         </select>
    </div>
+
+   <div>
+    <select name="selectSize" [(ngModel)]="sizeMapSelected">
+     <option [value]="size" *ngFor="let size of sizeMapSelectOptions">{{size}}</option>
+     </select>
+    </div> 
+
    <div>
     <select name="miselect" [(ngModel)]="gameSettings.gameMode">
      <option [value]="type" *ngFor="let type of gameModeOptions">{{type}}</option>
      </select>
-</div>
+    </div> 
 
     <div>
         <button (click)="createTeam()">Add team</button>
-        <div *ngFor="let team of gameSettings.teamsGame;index as i">
+        <div *ngFor="let team of teamsGame;index as i">
             {{team.nameTeam}} <button (click)="deleteTeam(i)">X</button>
         </div>
         <div *ngIf="showAddTeam">
@@ -37,12 +48,12 @@
             <p>NEW GAME</p>
             <p>cboxEasy: {{gameSettings.easyQuestions}}</p>
             <p>cboxMedium: {{gameSettings.mediumQuestions}}</p>
-            <p>cboxDifficult: {{gameSettings.dificultQuestions}}</p>
-            <p>cboxSpecial:{{gameSettings.specialQuestions}} </p>
-            <p>type round: {{typeRoundSelected}}</p>     
+            <p>cboxDifficult: {{gameSettings.dificultQuestions}}</p>         
+            <p>sizeMap: {{sizeMapSelected}} </p>
+            <p>type round: {{typeRoundSelected}}</p>      
 
             <p>Teams to played:</p>
-            <div *ngFor="let team of gameSettings.teamsGame">
+            <div *ngFor="let team of teamsGame">
                 {{team.nameTeam}}
             </div>
             

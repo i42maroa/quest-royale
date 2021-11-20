@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Team } from 'src/app/team/teamDTO.interface';
-import { GAME_SETTINGS } from '../services/game-settings';
+
 import { TeamRoad } from './road/teamRoad.interface';
 
 @Injectable({
@@ -28,11 +28,11 @@ export class MapService {
     }
   }
 
-  advanceBox(teamPos:number, amount:number):boolean{
+  advanceBox(teamPos:number, amount:number, amountBoxRoad:number):boolean{
     this.roadTeams[teamPos].currentPosition +=amount;
 
    //If return true is because the team complete the road
-   if(this.roadTeams[teamPos].currentPosition >= GAME_SETTINGS.amountBoxRoad){
+   if(this.roadTeams[teamPos].currentPosition >= amountBoxRoad){
       return true;
     }
     return false;

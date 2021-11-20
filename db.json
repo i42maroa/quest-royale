@@ -1,0 +1,68 @@
+{
+  "game": [
+    {
+      "gameSettings": {
+        "amountBoxRoad": 10,
+        "amountRoundToWin": 1,
+        "easyQuestions": false,
+        "mediumQuestions": true,
+        "dificultQuestions": true,
+        "gameMode": "Tournament"
+      },
+      "match": [
+        {
+          "rounds": [
+            {
+              "teamWin": 0
+            }
+          ],
+          "teamsToPlay": [
+            0,
+            2
+          ],
+          "teamWin": 0
+        },
+        {
+          "rounds": [
+            {
+              "teamWin": 1
+            }
+          ],
+          "teamsToPlay": [
+            1,
+            3
+          ],
+          "teamWin": 1
+        },
+        {
+          "rounds": [
+            {
+              "teamWin": 1
+            }
+          ],
+          "teamsToPlay": [
+            0,
+            3
+          ],
+          "teamWin": 1
+        }
+      ],
+      "teams": [
+        {
+          "nameTeam": "los chimus"
+        },
+        {
+          "nameTeam": "xoxifantes"
+        },
+        {
+          "nameTeam": "los criptos"
+        },
+        {
+          "nameTeam": "mariolas al poder"
+        }
+      ],
+      "id": 1,
+      "teamWin": 3
+    }
+  ]
+}

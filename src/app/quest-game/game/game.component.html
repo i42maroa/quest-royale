@@ -1,1 +1,59 @@
-<p>game works!</p>
+
+<div *ngIf="showButtonStart && !showMatch">
+
+    <div *ngIf="game.teamWin!=null && showNoMatchAvailableMessage">
+        TEAM WINNER: {{game.teams[game.teamWin].nameTeam}}
+        <br>
+        NO HAY MATCHES DISPONIBLES PARA ESTA PARTIDA
+        GENERA UNA NUEVA PARTIDA SI DESEA JUGAR
+
+        <div *ngIf="!showDetailsMatch">
+            <button (click)="toggleShowDetailsMatch()"> Show more details game</button>
+        </div>
+        <div *ngIf="showDetailsMatch">
+            <button (click)="toggleShowDetailsMatch()"> Show less details game</button>
+        </div>
+    </div>
+
+    <div *ngIf="showDetailsMatch">
+        <h2> MATCHS:</h2>
+
+        <div *ngFor="let match of game.match;index as i">
+            
+            <h3>Match {{i+1}}</h3>
+            
+            <div *ngFor="let team of match.teamsToPlay">
+                <div *ngIf="team !=-1">
+                    {{game.teams[team].nameTeam}} 
+                </div>
+                <div *ngIf="team ==-1">
+                Pending
+                </div>
+            </div>
+
+            <div *ngIf="currentMatch == i">
+                <div *ngIf="matchStartedPreviously">
+                    Match previously started
+                    <button (click)="toggleShowMatch()">Get on match</button>
+                </div>
+            
+                <div *ngIf="!matchStartedPreviously">
+                    <button (click)="toggleShowMatch()">Start Match</button>
+                </div>
+            </div>
+
+            <div *ngIf="match.teamWin != null ">
+                <h4>Team win round: </h4>
+                {{game.teams[match.teamsToPlay[match.teamWin]].nameTeam}}
+            </div>
+            <hr>
+        </div>  
+
+    </div>
+</div>
+
+
+<div *ngIf="showMatch && this.loadTeams">
+    <app-match [match]="game.match[currentMatch]" [teamsGame]="game.teams" [matchSettings]="game.gameSettings" (matchFinishedEvent)="finishMatch($event)" 
+    (roundFinishedEvent)="finishRound($event)"></app-match>
+</div>

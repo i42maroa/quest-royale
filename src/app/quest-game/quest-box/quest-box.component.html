@@ -13,7 +13,7 @@
 
     <div class="buttons_container">
         <div *ngIf="!showResults">
-            <button (click)="checkResult()" [disabled]="optionChoosed == -1"> Comprobar</button>
+            <button (click)="checkResult()" [disabled]="optionChoosed == -1"> Check</button>
         </div>
         <div *ngIf="showResults">
             <button (click)="sendResults()">NextTeam</button>
@@ -21,7 +21,9 @@
     </div>
 
     <div>
-        <p>Current team: {{teamCurrent}}</p>
+        Current team: {{teamCurrent}}
+        Difficulty: {{quest.difficulty}}
+        Unit: {{quest.unit}}
     </div>
 </div>
 
